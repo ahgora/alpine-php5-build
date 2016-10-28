@@ -10,4 +10,4 @@ rm /var/cache/apk/*
 EXPOSE 80 443
 
 
-ENTRYPOINT ["/usr/sbin/apachectl"]
+CMD ["/usr/sbin/apachectl", "-D", "FOREGROUND"]
