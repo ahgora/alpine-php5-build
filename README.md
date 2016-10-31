@@ -19,7 +19,7 @@ Running your Apache+PHP docker image
 
 Start your image binding the external ports 80 to your container:
 
-      docker run -t -d -p 80:80 ahgora/alpine-php5-build -DFOREGROUND
+      docker run -t -d -p 80:80 ahgora/alpine-php5-build
 
 
 Loading your custom PHP application
