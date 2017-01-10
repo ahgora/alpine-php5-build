@@ -21,9 +21,6 @@ apk del wget &&\
 rm /var/cache/apk/* &&\
 cd /tmp && rm -Rf *
 
-
-
 EXPOSE 80 443
-
 
 CMD ["/usr/sbin/apachectl", "-D", "FOREGROUND"]
