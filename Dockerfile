@@ -31,8 +31,7 @@ RUN cd /php-driver/ext && bash install.sh
 RUN echo 'extension=cassandra.so' >> /etc/php5/php.ini
 RUN apk del git php5-pear cmake bash libuv-dev openssl-dev php5-dev \
     autoconf gmp-dev make gcc g++ boost
-RUN rm /var/cache/apk/* && rm -Rf /php-driver\
-cd /tmp && rm -Rf *
+RUN rm /var/cache/apk/* && rm -Rf /php-driver rm -Rf /tmp/*
 
 EXPOSE 80 443
 
