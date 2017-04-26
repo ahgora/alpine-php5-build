@@ -23,6 +23,17 @@ apk del wget &&\
 rm /var/cache/apk/* &&\
 cd /tmp && rm -Rf *
 
+RUN apk update && apk upgrade &&\
+    apk add git libuv php5-pear cmake bash libuv-dev openssl-dev php5-dev \
+    autoconf gmp-dev make gcc g++ boost
+RUN git clone https://github.com/datastax/php-driver.git && cd php-driver && git submodule update --init
+RUN cd /php-driver/ext && bash install.sh
+RUN echo 'extension=cassandra.so' >> /etc/php5/php.ini
+RUN apk del git php5-pear cmake bash libuv-dev openssl-dev php5-dev \
+    autoconf gmp-dev make gcc g++ boost
+RUN rm /var/cache/apk/* && rm -Rf /php-driver\
+cd /tmp && rm -Rf *
+
 EXPOSE 80 443
 
 CMD ["/usr/sbin/apachectl", "-D", "FOREGROUND"]
