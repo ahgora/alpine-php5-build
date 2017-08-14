@@ -19,6 +19,8 @@ sed -i 's/^post_max_size = 8M$/post_max_size = 100M/' /etc/php5/php.ini &&\
 wget https://github.com/ahgora/wkhtmltopdf/raw/master/wkhtmltopdf &&\
 chmod +x wkhtmltopdf &&\
 mv wkhtmltopdf /usr/bin/ &&\
+wget https://github.com/kelseyhightower/confd/releases/download/v0.12.0-alpha3/confd-0.12.0-alpha3-linux-amd64 -O /usr/local/bin/confd && \
+chmod +x /usr/local/bin/confd && \
 apk del wget &&\
 rm /var/cache/apk/* &&\
 cd /tmp && rm -Rf *
@@ -32,6 +34,25 @@ RUN echo 'extension=cassandra.so' >> /etc/php5/php.ini
 RUN apk del git php5-pear cmake bash libuv-dev openssl-dev php5-dev \
     autoconf gmp-dev make gcc g++ boost
 RUN rm /var/cache/apk/* && rm -Rf /php-driver rm -Rf /tmp/*
+
+
+
+# Instação do NewRelic agent
+
+# Variables for enabling NewRelic
+ENV  NR_APP_NAME="PHP Application" \ 
+NR_INSTALL_SILENT=true 
+
+RUN mkdir -p /opt/newrelic && \
+cd /opt/newrelic && \
+wget  http://download.newrelic.com/php_agent/release/newrelic-php5-7.3.0.193-linux-musl.tar.gz -O newrelic-php5-linux.tar.gz && \
+tar -zxvf newrelic-php5-linux.tar.gz  && \
+rm newrelic-php5-linux.tar.gz && \
+cd /opt/newrelic/newrelic-php5-7.3.0.193-linux-musl && \
+sh newrelic-install install
+
+
+WORKDIR /
 
 EXPOSE 80 443
 
