@@ -19,7 +19,7 @@ sed -i 's/^post_max_size = 8M$/post_max_size = 100M/' /etc/php5/php.ini &&\
 wget https://github.com/ahgora/wkhtmltopdf/raw/master/wkhtmltopdf &&\
 chmod +x wkhtmltopdf &&\
 mv wkhtmltopdf /usr/bin/ &&\
-wget https://github.com/kelseyhightower/confd/releases/download/v0.12.0-alpha3/confd-0.12.0-alpha3-linux-amd64 -O /usr/local/bin/confd && \
+wget https://github.com/kelseyhightower/confd/releases/download/v0.13.0/confd-0.13.0-linux-amd64 -O /usr/local/bin/confd && \
 chmod +x /usr/local/bin/confd && \
 apk del wget &&\
 rm /var/cache/apk/* &&\
