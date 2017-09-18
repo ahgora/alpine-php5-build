@@ -45,10 +45,10 @@ NR_INSTALL_SILENT=true
 
 RUN mkdir -p /opt/newrelic && \
 cd /opt/newrelic && \
-wget  http://download.newrelic.com/php_agent/release/newrelic-php5-7.4.0.198-linux-musl.tar.gz -O newrelic-php5-linux.tar.gz && \
+wget http://download.newrelic.com/php_agent/release/newrelic-php5-7.5.0.199-linux-musl.tar.gz -O newrelic-php5-linux.tar.gz && \
 tar -zxvf newrelic-php5-linux.tar.gz  && \
 rm newrelic-php5-linux.tar.gz && \
-cd /opt/newrelic/newrelic-php5-7.4.0.198-linux-musl && \
+cd /opt/newrelic/newrelic-php5-7.5.0.199-linux-musl && \
 sh newrelic-install install
 
 
