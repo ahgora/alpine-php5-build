@@ -1,9 +1,9 @@
 FROM        alpine:3.4
-MAINTAINER  Weslley Camilo
+MAINTAINER  Ahgora Sistemas
 
 RUN apk update && apk upgrade && \
 mkdir -p /run/apache2/ &&\
-apk add apache2=2.4.27-r0 apache2-utils=2.4.27-r0 php5-zlib php5-zip php5-apache2 php5-gettext php5-cgi php5-gd php5-intl php5-iconv php5-mcrypt patch php5-imap php5-json php5-curl php5-xml php5-soap php5-dom php5-calendar wget php5-openssl &&\
+apk add apache2=2.4.27-r1 apache2-utils=2.4.27-r1 php5-zlib php5-zip php5-apache2 php5-gettext php5-cgi php5-gd php5-intl php5-iconv php5-mcrypt patch php5-imap php5-json php5-curl php5-xml php5-soap php5-dom php5-calendar wget php5-openssl &&\
 apk add fabric --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted &&\
 apk add --update --no-cache libgcc libstdc++ libx11 glib libxrender libxext libintl ttf-dejavu ttf-droid ttf-freefont ttf-liberation ttf-ubuntu-font-family zip openssl &&\
 apk update && apk add wget ca-certificates php5-mysqli php5-mysql php5-pdo_mysql && \
@@ -19,7 +19,7 @@ sed -i 's/^post_max_size = 8M$/post_max_size = 100M/' /etc/php5/php.ini &&\
 wget https://github.com/ahgora/wkhtmltopdf/raw/master/wkhtmltopdf &&\
 chmod +x wkhtmltopdf &&\
 mv wkhtmltopdf /usr/bin/ &&\
-wget https://github.com/kelseyhightower/confd/releases/download/v0.13.0/confd-0.13.0-linux-amd64 -O /usr/local/bin/confd && \
+wget https://github.com/ahgora/confd/blob/master/confd?raw=true -O /usr/local/bin/confd && \
 chmod +x /usr/local/bin/confd && \
 apk del wget &&\
 rm /var/cache/apk/* &&\
@@ -40,15 +40,15 @@ RUN rm /var/cache/apk/* && rm -Rf /php-driver rm -Rf /tmp/*
 # Instação do NewRelic agent
 
 # Variables for enabling NewRelic
-ENV  NR_APP_NAME="PHP Application" \ 
-NR_INSTALL_SILENT=true 
+ENV  NR_APP_NAME="PHP Application" \
+NR_INSTALL_SILENT=true
 
 RUN mkdir -p /opt/newrelic && \
 cd /opt/newrelic && \
-wget http://download.newrelic.com/php_agent/release/newrelic-php5-7.5.0.199-linux-musl.tar.gz -O newrelic-php5-linux.tar.gz && \
+wget http://download.newrelic.com/php_agent/release/newrelic-php5-7.6.0.201-linux-musl.tar.gz  -O newrelic-php5-linux.tar.gz && \
 tar -zxvf newrelic-php5-linux.tar.gz  && \
 rm newrelic-php5-linux.tar.gz && \
-cd /opt/newrelic/newrelic-php5-7.5.0.199-linux-musl && \
+cd /opt/newrelic/newrelic-php5-7.6.0.201-linux-musl && \
 sh newrelic-install install
 
 
