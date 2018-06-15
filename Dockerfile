@@ -17,7 +17,7 @@ sed -i 's/^memory_limit = 128M$/memory_limit = 1536M/' /etc/php5/php.ini &&\
 sed -i 's/^upload_max_filesize = 2M$/upload_max_filesize = 100M/' /etc/php5/php.ini &&\
 sed -i 's/^post_max_size = 8M$/post_max_size = 100M/' /etc/php5/php.ini &&\
 sed -i 's/^max_execution_time = 30$/max_execution_time = 500/' /etc/php5/php.ini &&\
-sed -i 's/^\;max_input_vars = [0-9]*$/max_input_vars = 5000/' /etc/php5/php.ini &&\
+sed -i 's/^\;.*max_input_vars.*=.*[0-9]*$/max_input_vars = 5000/' /etc/php5/php.ini &&\
 wget https://github.com/ahgora/wkhtmltopdf/raw/master/wkhtmltopdf &&\
 chmod +x wkhtmltopdf &&\
 mv wkhtmltopdf /usr/bin/ &&\
